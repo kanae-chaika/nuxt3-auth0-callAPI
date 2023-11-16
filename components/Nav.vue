@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <ul class="flex">
-      <li><NuxtLink to="/index">TOP</NuxtLink></li>
+      <li><NuxtLink to="/">TOP</NuxtLink></li>
       <li><NuxtLink to="/about">about</NuxtLink></li>
     </ul>
   </nav>
