@@ -1,18 +1,22 @@
 <template>
   <section class="login">
     <div class="flex">
-      <Button v-if="isAuthenticated" @click="logout">Logout</Button>
-      <Button v-else @click="login">Login</Button>
+      <ClientOnly>
+        <Button v-if="isAuthenticated" @click="logout">Logout</Button>
+        <Button v-else @click="login">Login</Button>
+      </ClientOnly>
     </div>
   </section>
   <section class="user_data">
     <h2 class="title">Login Data</h2>
-    <div v-if="user" class="user_data_content">
-      <div v-if="user?.picture" class="img_wrap"><img :src="user?.picture" /></div>
-      <div class="txt_wrap">
-        <p>{{ user?.name }}</p>
+    <ClientOnly>
+      <div v-if="user" class="user_data_content">
+        <div v-if="user?.picture" class="img_wrap"><img :src="user?.picture" /></div>
+        <div class="txt_wrap">
+          <p>{{ user?.name }}</p>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
   </section>
 </template>
 
@@ -20,11 +24,13 @@
 import { useAuth0 } from '@auth0/auth0-vue'
 
 const auth0 = process.client ? useAuth0() : undefined
-const isAuthenticated = ref(false)
 
-watch(auth0?.isAuthenticated, async () => {
-  if (auth0?.isAuthenticated.value) isAuthenticated.value = true
+const isAuthenticated = computed(() => {
+  console.log('auth0', auth0)
+  console.log('auth0?.isAuthenticated.value', auth0?.isAuthenticated.value)
+  return auth0?.isAuthenticated.value
 })
+
 const user = computed(() => {
   console.log('auth0?.user.value', auth0?.user.value)
   return auth0?.user.value
