@@ -47,8 +47,6 @@ const callApi = async () => {
   })
   if (data.value) apiMessage.value = data.value
   if (error.value) apiMessage.value = error.value
-  console.log(data.value)
-  console.log(error.value)
 
   // try {
   //   const response = await axios.get(url, {
