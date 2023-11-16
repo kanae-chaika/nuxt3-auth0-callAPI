@@ -2,10 +2,8 @@
   <div>
     <Nav />
     <Login />
-    <section class="api">
-      <div>
-        <Button>Call API</Button>
-      </div>
+    <section class="about">
+      <h1>About</h1>
     </section>
   </div>
 </template>

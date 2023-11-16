@@ -1,0 +1,153 @@
+@use '../global' as g;
+
+//--------------- base -------------- //
+
+:root {
+  --vc-clr-primary: g.$base_color !important;
+  --vc-clr-secondary: g.$bg_light_blue_color !important;
+}
+
+body {
+  color: #333;
+  line-height: 2;
+  letter-spacing: 0.2em;
+  font-size: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: 'palt';
+  animation: opacity 0.7s both;
+}
+
+a {
+  @include g.a_ease;
+  color: g.$a_color;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.touch a:hover {
+  opacity: 1;
+}
+
+a img {
+  transition: opacity 0.3s;
+}
+
+//--------------- body -------------- //
+
+body {
+  color: g.$txt_color;
+  background: #fff;
+  &.nav_op,
+  &.modal_op {
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    position: fixed;
+  }
+}
+
+@media (min-width: #{g.$tab_min_width}px) and (max-width: #{g.$shrink_point}px) {
+  html {
+    min-width: #{g.$shrink_point}px;
+    overflow-x: auto;
+    font-size: 90%;
+  }
+}
+
+.base_wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: content-box;
+}
+
+.small_wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: content-box;
+}
+
+.middle_wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: content-box;
+}
+
+.large_wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: content-box;
+}
+
+.ex_large_wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: content-box;
+}
+
+//--------------- responsive -------------- //
+
+.sp {
+  display: none;
+  @include g.mq(sp) {
+    display: block;
+  }
+}
+.sp_tab {
+  display: none;
+  @include g.mq(sp_tab) {
+    display: block;
+  }
+}
+
+.pc {
+  @include g.mq(sp_tab) {
+    display: none;
+  }
+}
+.pc_tab {
+  @include g.mq(sp) {
+    display: none;
+  }
+}
+
+.sp_small {
+  display: none;
+  @include g.mq(sp_small) {
+    display: block;
+  }
+}
+
+//電話無効
+@media (min-device-width: 768px) {
+  a[href*='tel:'] {
+    pointer-events: none;
+  }
+}
+
+//--------------- common -------------- //
+
+.align_center {
+  text-align: center;
+}
+
+.sp_justify {
+  @include g.mq() {
+    text-align: justify !important;
+  }
+}

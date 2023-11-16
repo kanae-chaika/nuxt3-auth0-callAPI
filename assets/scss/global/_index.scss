@@ -1,0 +1,4 @@
+//global/_index.scss
+
+@forward 'setting'; //変数$を管理する
+@forward 'mixin'; //mixinの管理
