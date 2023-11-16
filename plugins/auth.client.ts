@@ -7,8 +7,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     domain: runtimeConfig.public.authDomain,
     clientId: runtimeConfig.public.authClientId,
     authorizationParams: {
-      redirect_uri: window.location.origin
-    }
+      redirect_uri: window.location.origin,
+      audience: runtimeConfig.public.audience,
+    },
+    cacheLocation: 'localstorage',
+    useRefreshTokens: false,
   })
 
   // Only add if client-side
