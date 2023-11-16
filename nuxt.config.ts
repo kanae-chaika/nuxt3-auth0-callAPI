@@ -20,6 +20,7 @@ export default defineNuxtConfig({
       authDomain: '',
       authClientId: '',
       audience: '',
+      apiHost: '',
     },
   },
 })
