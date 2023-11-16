@@ -1,11 +1,15 @@
 <template>
   <section class="login">
     <div class="flex">
-      <Button>Login</Button>
+      <Button @cliick="login">Login</Button>
       <Button>Logout</Button>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+const login = () => {}
+</script>
 
 <style lang="scss" scoped>
 .flex {
