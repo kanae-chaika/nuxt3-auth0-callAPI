@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Nav />
+    <Nav>Top Page</Nav>
     <Login />
-    <h1>Top Page</h1>
     <section class="api">
       <div>
         <Button @click="callApi">Call API</Button>
@@ -29,50 +28,20 @@ const errorMessage = ref()
 
 const callApi = async () => {
   const accessToken = await auth0?.getAccessTokenSilently()
-  console.log('accessToken', accessToken)
+  // console.log('accessToken', accessToken)
   const url = config.public.apiHost + '/v1/users/me'
-  // const url = config.public.apiHost + '/v1/master/categories'
 
   const { data, error } = await useFetch(url, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    async onResponse({ request, response, options }) {
-      console.log('onResponse log1', request, response.status)
-      for (const header of response.headers.entries()) {
-        console.log('onResponse HEADER', header)
-      }
+    async onResponse({ request, response }) {
+      console.log('onResponse log', request, response.status)
     },
   })
   if (data.value) apiMessage.value = data.value
   if (error.value) apiMessage.value = error.value
-
-  // try {
-  //   const response = await axios.get(url, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   })
-  //   const data = await response.data
-  //   apiMessage.value = data
-  // } catch (e: any) {
-  //   apiMessage.value = `Error: the server responded with '${e.response.status}: ${e.response.statusText}'`
-  // }
-
-  // try {
-  //   const response = await fetch(url, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //   })
-  //   const data = await response.json()
-  //   apiMessage.value = data
-  // } catch (e: any) {
-  //   apiMessage.value = `Error: the server responded with '${e.response.status}: ${e.response.statusText}'`
-  // }
 }
 </script>
 
