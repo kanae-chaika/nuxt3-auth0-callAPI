@@ -8,12 +8,14 @@
     </div>
   </section>
   <section class="user_data">
-    <h2 class="title">Login Data</h2>
+    <h2 class="title">Auth0 Login Data</h2>
     <ClientOnly>
       <div v-if="user" class="user_data_content">
         <div v-if="user?.picture" class="img_wrap"><img :src="user?.picture" /></div>
         <div class="txt_wrap">
-          <p>{{ user?.name }}</p>
+          <template v-for="(value, key) in user">
+            <p>{{ key }} : {{ value }}</p>
+          </template>
         </div>
       </div>
     </ClientOnly>
@@ -41,7 +43,11 @@ const login = () => {
   console.log('auth0', auth0)
   auth0?.checkSession()
   if (!auth0?.isAuthenticated.value) {
-    auth0?.loginWithRedirect()
+    auth0?.loginWithRedirect({
+      appState: {
+        target: useRoute().path,
+      },
+    })
   }
 }
 const logout = () => {

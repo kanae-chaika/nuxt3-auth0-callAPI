@@ -1,10 +1,7 @@
 <template>
   <div>
-    <Nav />
+    <Nav>Other Page</Nav>
     <Login />
-    <section class="about">
-      <h1>About Page</h1>
-    </section>
   </div>
 </template>
 
