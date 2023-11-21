@@ -36,8 +36,8 @@ const callApi = async () => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    async onResponse({ request, response }) {
-      console.log('onResponse log', request, response.status)
+    onResponse({ request, response }) {
+      console.log(request, response.status, response._data)
     },
   })
   if (data.value) apiMessage.value = data.value
