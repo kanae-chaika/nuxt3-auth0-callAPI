@@ -20,11 +20,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   addRouteMiddleware('auth', () => {
-    console.log('addRouteMiddleware')
-
     if (process.client) {
       auth0.checkSession()
-      console.log('auth0.isAuthenticated.value', auth0.isAuthenticated.value)
       if (!auth0.isAuthenticated.value) {
         auth0.loginWithRedirect({
           appState: {
