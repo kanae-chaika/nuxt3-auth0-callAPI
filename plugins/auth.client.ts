@@ -1,14 +1,14 @@
 import { createAuth0 } from '@auth0/auth0-vue'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const runtimeConfig = useRuntimeConfig()
+  const config = useRuntimeConfig()
 
   const auth0 = createAuth0({
-    domain: runtimeConfig.public.authDomain,
-    clientId: runtimeConfig.public.authClientId,
+    domain: config.public.auth0Domain,
+    clientId: config.public.auth0ClientId,
     authorizationParams: {
       redirect_uri: window.location.origin,
-      audience: runtimeConfig.public.authAudience,
+      audience: config.public.auth0Audience,
     },
     cacheLocation: 'localstorage',
     useRefreshTokens: false,
@@ -20,12 +20,15 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   addRouteMiddleware('auth', () => {
+    console.log('addRouteMiddleware')
+
     if (process.client) {
       auth0.checkSession()
+      console.log('auth0.isAuthenticated.value', auth0.isAuthenticated.value)
       if (!auth0.isAuthenticated.value) {
         auth0.loginWithRedirect({
           appState: {
-            target: useRoute().path,
+            target: useRoute().fullPath,
           },
         })
       }

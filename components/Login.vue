@@ -13,8 +13,10 @@
   <section class="auth_data">
     <div class="auth_data_content">
       <h2 class="title">Auth0 Condition</h2>
-      <p>isAuthLoading : {{ isAuthLoading }}</p>
-      <p>isAuthenticated : {{ isAuthenticated }}</p>
+      <ClientOnly>
+        <p>isAuthLoading : {{ isAuthLoading }}</p>
+        <p>isAuthenticated : {{ isAuthenticated }}</p>
+      </ClientOnly>
     </div>
     <div class="auth_data_content">
       <h2 class="title">Auth0 User Data</h2>

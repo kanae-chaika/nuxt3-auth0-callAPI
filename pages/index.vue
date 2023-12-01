@@ -40,7 +40,7 @@ const callApi = async () => {
     },
   })
   if (data.value) apiMessage.value = data.value
-  if (error.value) apiMessage.value = error.value
+  if (error.value) errorMessage.value = error.value
 }
 </script>
 

@@ -2,8 +2,6 @@ import { useAuth0 } from '@auth0/auth0-vue'
 
 export const useAuth = () => {
   const auth0 = process.client ? useAuth0() : undefined
-  const router = useRouter()
-  const redirectPath = ref<string | null>(null)
 
   const isAuthLoading = computed(() => {
     return auth0?.isLoading.value
