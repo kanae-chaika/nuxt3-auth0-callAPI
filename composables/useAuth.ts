@@ -3,21 +3,21 @@ export const useAuth = () => {
   const auth0 = $auth0
 
   const isAuthLoading = computed(() => {
-    return auth0.isLoading.value
+    return auth0?.isLoading.value
   })
 
   const isAuthenticated = computed(() => {
-    return auth0.isAuthenticated.value
+    return auth0?.isAuthenticated.value
   })
 
   const user = computed(() => {
-    return auth0.user.value
+    return auth0?.user.value
   })
 
   const loginWithRedirect = () => {
-    auth0.checkSession()
-    if (!auth0.isAuthenticated.value) {
-      auth0.loginWithRedirect({
+    auth0?.checkSession()
+    if (!auth0?.isAuthenticated.value) {
+      auth0?.loginWithRedirect({
         appState: {
           target: useRoute().fullPath,
         },
@@ -26,9 +26,9 @@ export const useAuth = () => {
   }
 
   const signupWithRedirect = () => {
-    auth0.checkSession()
-    if (!auth0.isAuthenticated.value) {
-      auth0.loginWithRedirect({
+    auth0?.checkSession()
+    if (!auth0?.isAuthenticated.value) {
+      auth0?.loginWithRedirect({
         appState: {
           target: useRoute().fullPath,
         },
@@ -50,7 +50,7 @@ export const useAuth = () => {
 
   const logout = () => {
     clearTaken()
-    auth0.logout({ logoutParams: { returnTo: window.location.origin } })
+    auth0?.logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
   const getAccessTokenSilently = () => auth0?.getAccessTokenSilently()
