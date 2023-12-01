@@ -19,15 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue'
-// import axios from 'axios'
-const auth0 = process.client ? useAuth0() : undefined
+const { getAccessTokenSilently } = useAuth()
+
 const config = useRuntimeConfig()
 const apiMessage = ref()
 const errorMessage = ref()
 
 const callApi = async () => {
-  const accessToken = await auth0?.getAccessTokenSilently()
+  const accessToken = await getAccessTokenSilently()
   // console.log('accessToken', accessToken)
   const url = config.public.apiHost + '/v1/users/me'
 

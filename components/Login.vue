@@ -3,61 +3,48 @@
     <div class="flex">
       <ClientOnly>
         <Button v-if="isAuthenticated" @click="logout">Logout</Button>
-        <Button v-else @click="login">Login</Button>
+        <template v-else>
+          <Button @click="loginWithRedirect">Login</Button>
+          <Button @click="signupWithRedirect">Sign Up</Button>
+        </template>
       </ClientOnly>
     </div>
   </section>
-  <section class="user_data">
-    <h2 class="title">Auth0 Login Data</h2>
-    <ClientOnly>
-      <div v-if="user" class="user_data_content">
-        <div v-if="user?.picture" class="img_wrap"><img :src="user?.picture" /></div>
-        <div class="txt_wrap">
-          <template v-for="(value, key) in user">
-            <p>{{ key }} : {{ value }}</p>
-          </template>
+  <section class="auth_data">
+    <div class="auth_data_content">
+      <h2 class="title">Auth0 Condition</h2>
+      <p>isAuthLoading : {{ isAuthLoading }}</p>
+      <p>isAuthenticated : {{ isAuthenticated }}</p>
+    </div>
+    <div class="auth_data_content">
+      <h2 class="title">Auth0 User Data</h2>
+      <ClientOnly>
+        <div v-if="user" class="user_data">
+          <div v-if="user?.picture" class="img_wrap"><img :src="user?.picture" /></div>
+          <div class="txt_wrap">
+            <template v-for="(value, key) in user">
+              <p>{{ key }} : {{ value }}</p>
+            </template>
+          </div>
         </div>
-      </div>
-    </ClientOnly>
+      </ClientOnly>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue'
-
-const auth0 = process.client ? useAuth0() : undefined
-
-const isAuthenticated = computed(() => {
-  return auth0?.isAuthenticated.value
-})
-
-const user = computed(() => {
-  return auth0?.user.value
-})
-
-const login = () => {
-  auth0?.checkSession()
-  if (!auth0?.isAuthenticated.value) {
-    auth0?.loginWithRedirect({
-      appState: {
-        target: useRoute().path,
-      },
-    })
-  }
-}
-const logout = () => {
-  auth0?.logout({ logoutParams: { returnTo: window.location.origin } })
-}
+const { isAuthLoading, isAuthenticated, user, loginWithRedirect, signupWithRedirect, logout } =
+  useAuth()
 </script>
 <style lang="scss" scoped>
 .flex {
   display: flex;
   gap: 1rem;
 }
-.user_data {
+.auth_data_content {
   margin: 0 0 3rem;
 }
-.user_data_content {
+.user_data {
   display: flex;
   gap: 1rem;
   .img_wrap {
