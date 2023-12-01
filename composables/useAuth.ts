@@ -1,7 +1,6 @@
-import { useAuth0 } from '@auth0/auth0-vue'
-
 export const useAuth = () => {
-  const auth0 = process.client ? useAuth0() : undefined
+  const { $auth0 } = useNuxtApp()
+  const auth0 = process.client ? $auth0 : undefined
 
   const isAuthLoading = computed(() => {
     return auth0?.isLoading.value
