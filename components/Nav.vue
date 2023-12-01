@@ -3,6 +3,7 @@
     <ul class="flex">
       <li><NuxtLink to="/">Top</NuxtLink></li>
       <li><NuxtLink to="/other">Other</NuxtLink></li>
+      <li><NuxtLink to="/query?q=aaa">Query</NuxtLink></li>
     </ul>
   </nav>
   <h1 class="page_title"><slot /></h1>
