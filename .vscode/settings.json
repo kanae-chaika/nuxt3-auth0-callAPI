@@ -7,8 +7,8 @@
   "scss.format.newlineBetweenRules": false,
   "scss.format.spaceAroundSelectorSeparator": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": false,
-    "source.fixAll.eslint": true
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit"
   },
   "vue.codeActions.enabled": false,
   "[html]": {

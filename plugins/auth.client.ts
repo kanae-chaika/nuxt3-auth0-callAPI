@@ -19,9 +19,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(auth0)
   }
 
-  addRouteMiddleware('auth', () => {
+  addRouteMiddleware('auth', async () => {
     if (process.client) {
-      auth0.checkSession()
+      await auth0.checkSession()
       if (!auth0.isAuthenticated.value) {
         auth0.loginWithRedirect({
           appState: {
