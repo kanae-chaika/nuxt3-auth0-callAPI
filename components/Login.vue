@@ -4,8 +4,8 @@
       <ClientOnly>
         <Button v-if="isAuthenticated" @click="logout">Logout</Button>
         <template v-else>
-          <Button @click="loginWithRedirect">Login</Button>
           <Button @click="signupWithRedirect">Sign Up</Button>
+          <Button @click="loginWithRedirect">Login</Button>
         </template>
       </ClientOnly>
     </div>

@@ -41,3 +41,11 @@ $breakpoints: (
 //@include g.mq(normal) 1439以下
 //@include g.mq(sp_tab) 1180以下
 //@include g.mq(sp) 743以下
+
+@mixin a_ease {
+  transition:
+    opacity 0.3s,
+    color 0.3s,
+    border 0.3s,
+    background 0.3s;
+}

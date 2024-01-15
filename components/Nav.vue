@@ -4,10 +4,15 @@
       <li><NuxtLink to="/">Top</NuxtLink></li>
       <li><NuxtLink to="/other">Other</NuxtLink></li>
       <li><NuxtLink to="/query?q=aaa">Query</NuxtLink></li>
+      <li v-if="isAuthenticated"><NuxtLink to="/mypage">Mypage</NuxtLink></li>
     </ul>
   </nav>
   <h1 class="page_title"><slot /></h1>
 </template>
+
+<script setup lang="ts">
+const { isAuthenticated } = useAuth()
+</script>
 
 <style lang="scss" scoped>
 .nav {
