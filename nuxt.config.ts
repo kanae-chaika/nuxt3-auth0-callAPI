@@ -1,11 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ['@/assets/scss/style.scss'],
+
   typescript: {
     shim: false,
     strict: true,
   },
+
   devtools: { enabled: true },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -15,6 +18,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   runtimeConfig: {
     public: {
       auth0Domain: '',
@@ -23,4 +27,6 @@ export default defineNuxtConfig({
       apiHost: '',
     },
   },
+
+  compatibilityDate: '2025-02-07',
 })
