@@ -1,4 +1,5 @@
 @use 'setting' as *;
+@use 'sass:map';
 
 //--------------- responsive -------------- //
 $shrink_point: 1200;
@@ -12,24 +13,27 @@ $breakpoints: (
   'sp': '(max-width: ' +
     (
       $tab_min_width - 1,
-    ) + 'px)',
+    ) +
+    'px)',
   'pc_tab': '(min-width: ' + $tab_min_width + 'px)',
   'pc': '(min-width: ' +
     (
       $tab_max_width + 1,
-    ) + 'px)',
+    ) +
+    'px)',
   'sp_tab': '(max-width: ' + $tab_max_width + 'px)',
   'large': '(min-width: ' + $desktop_width + 'px)',
   'normal': '(max-width: ' +
     (
       $desktop_width - 1,
-    ) + 'px)',
+    ) +
+    'px)',
   'tab': '(min-width: ' + $tab_min_width + 'px) and (max-width: ' + $tab_max_width + 'px)',
   'portrait': '(orientation: portrait) and (min-width: ' + $tab_min_width + 'px)',
 ) !default;
 
 @mixin mq($breakpoint: sp) {
-  @media #{map-get($breakpoints, $breakpoint)} {
+  @media #{map.get($breakpoints, $breakpoint)} {
     @content;
   }
 }
