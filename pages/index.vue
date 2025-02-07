@@ -32,7 +32,6 @@ const callApi = async () => {
 
   const { data, error } = await useFetch(url, {
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
     onResponse({ request, response }) {
