@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       auth0Domain: '',
+      auth0CustomDomain: '',
       auth0ClientId: '',
       auth0Audience: '',
       apiHost: '',

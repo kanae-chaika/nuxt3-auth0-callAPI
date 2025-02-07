@@ -1,10 +1,10 @@
 import { createAuth0 } from '@auth0/auth0-vue'
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig()
 
-  const auth0 = createAuth0({
-    domain: config.public.auth0Domain,
+  const auth0 = await createAuth0({
+    domain: config.public.auth0CustomDomain,
     clientId: config.public.auth0ClientId,
     authorizationParams: {
       redirect_uri: window.location.origin,
