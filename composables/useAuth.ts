@@ -14,29 +14,26 @@ export const useAuth = () => {
     return auth0?.user.value
   })
 
-  const loginWithRedirect = () => {
-    auth0?.checkSession()
-    if (!auth0?.isAuthenticated.value) {
+  const checkAndRedirect = async (target?: string, options = {}) => {
+    try {
+      // サイレント認証でトークンを取得 → ログイン済
+      await auth0.getAccessTokenSilently()
+    } catch (error) {
+      console.error('Silent authentication failed:', error)
+      // サイレント認証が失敗した場合リダイレクトでログイン
       auth0?.loginWithRedirect({
-        appState: {
-          target: useRoute().fullPath,
-        },
+        appState: { target: target || useRoute().fullPath },
+        ...options,
       })
     }
   }
 
-  const signupWithRedirect = () => {
-    auth0?.checkSession()
-    if (!auth0?.isAuthenticated.value) {
-      auth0?.loginWithRedirect({
-        appState: {
-          target: useRoute().fullPath,
-        },
-        authorizationParams: {
-          screen_hint: 'signup',
-        },
-      })
-    }
+  const loginWithRedirect = async (target?: string) => {
+    await checkAndRedirect(target)
+  }
+
+  const signupWithRedirect = async () => {
+    await checkAndRedirect(undefined, { authorizationParams: { screen_hint: 'signup' } })
   }
 
   const clearTaken = () => {
