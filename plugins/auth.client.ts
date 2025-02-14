@@ -14,10 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     useRefreshTokens: false,
   })
 
-  // Only add if client-side
-  if (process.client) {
-    nuxtApp.vueApp.use(auth0)
-  }
+  nuxtApp.vueApp.use(auth0)
 
   return {
     provide: {
