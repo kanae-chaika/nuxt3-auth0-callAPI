@@ -32,6 +32,6 @@
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.2",
     "@types": "auth0/auth0-vue",
-    "axios": "^1.6.2"
+    "axios": "^1.16.0"
   }
 }
